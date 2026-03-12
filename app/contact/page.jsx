@@ -56,6 +56,7 @@ export default function ContactPage() {
     if (!formData.firstName.trim()) e.firstName = "First name is required";
     if (!formData.email.trim()) e.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = "Invalid email";
+    if (!formData.phone.trim()) e.phone = "Phone number is required";
     if (!formData.message.trim()) e.message = "Message is required";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -67,7 +68,7 @@ export default function ContactPage() {
     if (errors[name]) setErrors(p => ({ ...p, [name]: undefined }));
   };
 
-  const WEBHOOK_URL = "https://n8n.srv1152566.hstgr.cloud/webhook/148d3c83-8fff-4a2b-9236-5baa7330837f"; // 🔁 Replace with your actual webhook URL
+  const WEBHOOK_URL = "https://your-webhook-url.com/webhook"; // 🔁 Replace with your actual webhook URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -577,8 +578,9 @@ export default function ContactPage() {
                           {errors.email && <p style={{ fontSize: 11, color: "#ef4444", marginTop: 4 }}>{errors.email}</p>}
                         </div>
                         <div className="input-wrap">
-                          <label style={labelStyle}>Phone</label>
-                          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 98765 43210" />
+                          <label style={labelStyle}>Phone <span style={{ color: "#ef4444" }}>*</span></label>
+                          <input className={errors.phone ? "err" : ""} type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 98765 43210" />
+                          {errors.phone && <p style={{ fontSize: 11, color: "#ef4444", marginTop: 4 }}>{errors.phone}</p>}
                         </div>
                       </div>
 
@@ -643,6 +645,3 @@ export default function ContactPage() {
     </>
   );
 }
-
-
-
