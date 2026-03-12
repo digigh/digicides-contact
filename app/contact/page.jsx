@@ -68,7 +68,7 @@ export default function ContactPage() {
     if (errors[name]) setErrors(p => ({ ...p, [name]: undefined }));
   };
 
-  const WEBHOOK_URL = "https://your-webhook-url.com/webhook"; // 🔁 Replace with your actual webhook URL
+  const WEBHOOK_URL = "https://n8n.srv1152566.hstgr.cloud/webhook/148d3c83-8fff-4a2b-9236-5baa7330837f"; // 🔁 Replace with your actual webhook URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -645,3 +645,4 @@ export default function ContactPage() {
     </>
   );
 }
+
