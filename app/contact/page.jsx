@@ -42,7 +42,7 @@ const FloatingOrb = ({ size, left, top, delay, color }) => (
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phone: "",
-    company: "", jobTitle: "", country: "", message: "",
+    company: "", jobTitle: "", message: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,18 +67,24 @@ export default function ContactPage() {
     if (errors[name]) setErrors(p => ({ ...p, [name]: undefined }));
   };
 
+  const WEBHOOK_URL = "https://your-webhook-url.com/webhook"; // 🔁 Replace with your actual webhook URL
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
     setIsSubmitting(true);
     try {
-      await fetch("/api/contact", {
+      await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          source: "Landing Page 2",
+          submittedAt: new Date().toISOString(),
+        }),
       });
       setSubmitStatus("success");
-      setFormData({ firstName: "", lastName: "", email: "", phone: "", company: "", jobTitle: "", country: "", message: "" });
+      setFormData({ firstName: "", lastName: "", email: "", phone: "", company: "", jobTitle: "", message: "" });
     } catch {
       setSubmitStatus("error");
     } finally {
@@ -145,17 +151,17 @@ export default function ContactPage() {
 
   const stats = [
     { icon: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A8CFF" strokeWidth="2" strokeLinecap="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EA580C" strokeWidth="2" strokeLinecap="round">
           <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
         </svg>
       ), value: "SaaS", label: "Agri Platform" },
     { icon: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A8CFF" strokeWidth="2" strokeLinecap="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EA580C" strokeWidth="2" strokeLinecap="round">
           <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
         </svg>
       ), value: "360°", label: "Visibility" },
     { icon: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A8CFF" strokeWidth="2" strokeLinecap="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EA580C" strokeWidth="2" strokeLinecap="round">
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/><path d="M11 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-6"/><polyline points="16 3 20 3 20 7"/><line x1="10" y1="14" x2="20" y2="3"/>
         </svg>
       ), value: "Multi", label: "Channel Reach" },
@@ -216,12 +222,12 @@ export default function ContactPage() {
         .product-card:hover {
           transform: translateY(-3px);
           background: rgba(255,255,255,0.85);
-          box-shadow: 0 12px 32px rgba(74,140,255,0.13);
+          box-shadow: 0 12px 32px rgba(249,115,22,0.12);
         }
         .stat-pill {
           background: rgba(255,255,255,0.72);
           backdrop-filter: blur(8px);
-          border: 1px solid rgba(74,140,255,0.14);
+          border: 1px solid rgba(249,115,22,0.15);
           border-radius: 14px;
           padding: 14px 18px;
           transition: all 0.22s ease;
@@ -229,8 +235,8 @@ export default function ContactPage() {
         }
         .stat-pill:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 22px rgba(74,140,255,0.13);
-          border-color: rgba(74,140,255,0.28);
+          box-shadow: 0 8px 22px rgba(249,115,22,0.12);
+          border-color: rgba(249,115,22,0.3);
         }
         .input-wrap input, .input-wrap textarea, .input-wrap select {
           width: 100%; height: 48px; padding: 0 16px;
@@ -249,8 +255,8 @@ export default function ContactPage() {
           padding-right: 36px;
         }
         .input-wrap input:focus, .input-wrap textarea:focus, .input-wrap select:focus {
-          border-color: #4A8CFF;
-          box-shadow: 0 0 0 3px rgba(74,140,255,0.13);
+          border-color: #F97316;
+          box-shadow: 0 0 0 3px rgba(249,115,22,0.13);
           background: white;
         }
         .input-wrap input.err, .input-wrap textarea.err {
@@ -259,7 +265,7 @@ export default function ContactPage() {
         }
         .submit-btn {
           width: 100%; height: 50px;
-          background: linear-gradient(135deg, #4A8CFF 0%, #2E6BFF 100%);
+          background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
           color: white; font-family: 'Sora', sans-serif;
           font-size: 14px; font-weight: 600; letter-spacing: 0.4px;
           border: none; border-radius: 10px; cursor: pointer;
@@ -268,8 +274,8 @@ export default function ContactPage() {
         }
         .submit-btn:hover:not(:disabled) {
           transform: translateY(-1px);
-          box-shadow: 0 10px 28px rgba(46,107,255,0.38);
-          background: linear-gradient(135deg, #6AABFF 0%, #4A8CFF 100%);
+          box-shadow: 0 10px 28px rgba(249,115,22,0.35);
+          background: linear-gradient(135deg, #FB923C 0%, #F97316 100%);
         }
         .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
         .nav-link {
@@ -289,14 +295,14 @@ export default function ContactPage() {
         }
       `}</style>
 
-      <div className={mounted ? "mounted" : ""} style={{ minHeight: "100vh", background: "linear-gradient(135deg, #F7FAFF 0%, #EAF3FF 45%, #DCEAFF 100%)", position: "relative", overflow: "hidden" }}>
+      <div className={mounted ? "mounted" : ""} style={{ minHeight: "100vh", background: "linear-gradient(135deg, #FFF8F0 0%, #FFF1E0 40%, #FFE8CC 70%, #FDDBB4 100%)", position: "relative", overflow: "hidden" }}>
 
         {/* Background orbs */}
         <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-          <FloatingOrb size={420} left="2%" top="8%" delay={0} color="radial-gradient(circle, rgba(127,181,255,0.22) 0%, transparent 70%)" />
-          <FloatingOrb size={320} left="68%" top="55%" delay={1.8} color="radial-gradient(circle, rgba(74,140,255,0.14) 0%, transparent 70%)" />
-          <FloatingOrb size={260} left="45%" top="2%" delay={2.8} color="radial-gradient(circle, rgba(107,191,89,0.11) 0%, transparent 70%)" />
-          <FloatingOrb size={200} left="82%" top="8%" delay={1} color="radial-gradient(circle, rgba(127,181,255,0.16) 0%, transparent 70%)" />
+          <FloatingOrb size={420} left="2%" top="8%" delay={0} color="radial-gradient(circle, rgba(255,180,80,0.18) 0%, transparent 70%)" />
+          <FloatingOrb size={320} left="68%" top="55%" delay={1.8} color="radial-gradient(circle, rgba(255,140,40,0.12) 0%, transparent 70%)" />
+          <FloatingOrb size={260} left="45%" top="2%" delay={2.8} color="radial-gradient(circle, rgba(255,200,100,0.13) 0%, transparent 70%)" />
+          <FloatingOrb size={200} left="82%" top="8%" delay={1} color="radial-gradient(circle, rgba(255,160,60,0.14) 0%, transparent 70%)" />
         </div>
 
         {/* ── Agri Art: Bottom-right wheat field panorama ── */}
@@ -376,7 +382,7 @@ export default function ContactPage() {
         </div>
 
         {/* ── Agri Art: Top-left elegant leaf sprig ── */}
-        <div style={{ position: "fixed", top: 72, left: 0, pointerEvents: "none", zIndex: 0 }}>
+        <div style={{ position: "fixed", top: 0, left: 0, pointerEvents: "none", zIndex: 0 }}>
           <svg width="280" height="300" viewBox="0 0 280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="leafGrad1" x1="0" y1="0" x2="1" y2="1">
@@ -412,52 +418,49 @@ export default function ContactPage() {
           </svg>
         </div>
 
-        {/* NAVBAR */}
-        <nav style={{ position: "sticky", top: 0, zIndex: 100, height: 76, backdropFilter: "blur(12px)", background: "rgba(255,255,255,0.65)", borderBottom: "1px solid rgba(74,140,255,0.1)" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        {/* MAIN */}
+        <main style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 32px 72px", position: "relative", zIndex: 1 }}>
 
-            {/* Logo — clickable, redirects to digicides.com */}
-            <a href="https://digicides.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", borderRadius: 14, padding: "4px 6px", transition: "all 0.2s", outline: "none" }}
-              onMouseEnter={e => { e.currentTarget.style.background = "rgba(74,140,255,0.06)"; e.currentTarget.style.transform = "scale(1.02)"; }}
+          {/* ── Top bar: Logo + Visit Website ── */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 52 }}>
+            <a
+              href="https://digicides.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", borderRadius: 16, padding: "6px 8px", transition: "all 0.22s" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.5)"; e.currentTarget.style.transform = "scale(1.02)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.transform = "scale(1)"; }}
             >
               <img
                 src="https://i.ibb.co/Tqn0Y1wk/Logo.png"
                 alt="Digicides"
                 onError={e => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }}
-                style={{ height: 52, borderRadius: 12, objectFit: "contain" }}
+                style={{ height: 58, borderRadius: 14, objectFit: "contain" }}
               />
-              {/* Fallback */}
               <div style={{ display: "none", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 42, height: 42, borderRadius: 12, background: "linear-gradient(135deg, #4A8CFF, #2E6BFF)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 14px rgba(46,107,255,0.28)" }}>
+                <div style={{ width: 44, height: 44, borderRadius: 13, background: "linear-gradient(135deg, #F97316, #EA580C)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 14px rgba(249,115,22,0.3)" }}>
                   <div style={{ width: 26, height: 26 }}><LeafIcon /></div>
                 </div>
                 <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 20, color: "#1e293b", letterSpacing: "-0.3px" }}>
-                  digi<span style={{ color: "#2E6BFF" }}>cides</span>
+                  digi<span style={{ color: "#EA580C" }}>cides</span>
                 </span>
               </div>
             </a>
 
-            {/* Visit Website CTA */}
             <a
               href="https://digicides.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "'Sora', sans-serif", fontSize: 13, fontWeight: 600, color: "#2E6BFF", background: "rgba(46,107,255,0.07)", border: "1.5px solid rgba(46,107,255,0.18)", padding: "9px 20px", borderRadius: 100, textDecoration: "none", letterSpacing: "0.2px", transition: "all 0.22s", whiteSpace: "nowrap" }}
-              onMouseEnter={e => { e.currentTarget.style.background = "rgba(46,107,255,0.13)"; e.currentTarget.style.borderColor = "rgba(46,107,255,0.35)"; e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 6px 18px rgba(46,107,255,0.15)"; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "rgba(46,107,255,0.07)"; e.currentTarget.style.borderColor = "rgba(46,107,255,0.18)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "'Sora', sans-serif", fontSize: 13, fontWeight: 600, color: "#EA580C", background: "rgba(249,115,22,0.08)", border: "1.5px solid rgba(249,115,22,0.25)", padding: "10px 22px", borderRadius: 100, textDecoration: "none", letterSpacing: "0.2px", transition: "all 0.22s", whiteSpace: "nowrap" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(249,115,22,0.15)"; e.currentTarget.style.borderColor = "rgba(249,115,22,0.45)"; e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 6px 20px rgba(249,115,22,0.18)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "rgba(249,115,22,0.08)"; e.currentTarget.style.borderColor = "rgba(249,115,22,0.25)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
             >
               Visit Website
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </a>
-
           </div>
-        </nav>
-
-        {/* MAIN */}
-        <main style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 32px", position: "relative", zIndex: 1 }}>
           <div className="split-wrap" style={{ display: "flex", gap: 48, alignItems: "flex-start" }}>
 
             {/* LEFT HERO */}
@@ -474,7 +477,7 @@ export default function ContactPage() {
               {/* Headline */}
               <h1 className="title-anim" style={{ fontFamily: "'Sora', sans-serif", fontSize: "clamp(36px, 4.2vw, 54px)", fontWeight: 800, color: "#0f172a", lineHeight: 1.13, letterSpacing: "-1.5px", marginBottom: 18 }}>
                 Discover. Engage.<br />
-                <span style={{ background: "linear-gradient(135deg, #4A8CFF 0%, #2E6BFF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Convert.</span>
+                <span style={{ background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Convert.</span>
               </h1>
 
               {/* Description */}
@@ -487,7 +490,7 @@ export default function ContactPage() {
                 {stats.map(s => (
                   <div key={s.label} className="stat-pill">
                     <div style={{ marginBottom: 4 }}>{s.icon}</div>
-                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: 20, fontWeight: 800, color: "#2E6BFF", letterSpacing: "-0.4px", lineHeight: 1 }}>{s.value}</div>
+                    <div style={{ fontFamily: "'Sora', sans-serif", fontSize: 20, fontWeight: 800, color: "#EA580C", letterSpacing: "-0.4px", lineHeight: 1 }}>{s.value}</div>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#64748b", fontWeight: 500, textAlign: "center", marginTop: 2 }}>{s.label}</div>
                   </div>
                 ))}
@@ -514,7 +517,7 @@ export default function ContactPage() {
               {/* Contact link */}
               <div style={{ marginTop: 32, paddingTop: 22, borderTop: "1px solid rgba(74,140,255,0.12)" }}>
                 <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#94a3b8", marginBottom: 10 }}>Or reach us directly:</p>
-                <a href="mailto:connect@digicides.com" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "'Sora', sans-serif", fontSize: 14, fontWeight: 600, color: "#2E6BFF", textDecoration: "none" }}>
+                <a href="mailto:connect@digicides.com" style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "'Sora', sans-serif", fontSize: 14, fontWeight: 600, color: "#EA580C", textDecoration: "none" }}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
@@ -525,7 +528,7 @@ export default function ContactPage() {
 
             {/* RIGHT FORM */}
             <div className="form-right" style={{ width: "45%" }}>
-              <div style={{ background: "rgba(255,255,255,0.88)", backdropFilter: "blur(18px)", borderRadius: 22, padding: "36px 36px 32px", boxShadow: "0 24px 64px rgba(74,140,255,0.13), 0 4px 20px rgba(0,0,0,0.05)", border: "1px solid rgba(255,255,255,0.95)" }}>
+              <div style={{ background: "rgba(255,255,255,0.88)", backdropFilter: "blur(18px)", borderRadius: 22, padding: "36px 36px 32px", boxShadow: "0 24px 64px rgba(249,115,22,0.1), 0 4px 20px rgba(0,0,0,0.05)", border: "1px solid rgba(255,255,255,0.95)" }}>
 
                 {/* Form header */}
                 <div style={{ marginBottom: 26 }}>
@@ -547,7 +550,7 @@ export default function ContactPage() {
                     </div>
                     <h3 style={{ fontFamily: "'Sora', sans-serif", fontSize: 19, fontWeight: 700, color: "#2E7D1F", marginBottom: 8 }}>Message Received!</h3>
                     <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#64748b", lineHeight: 1.6 }}>We'll be in touch within 24 hours.</p>
-                    <button onClick={() => setSubmitStatus("idle")} style={{ marginTop: 22, fontFamily: "'Sora', sans-serif", fontSize: 12, fontWeight: 600, color: "#2E6BFF", background: "rgba(74,140,255,0.08)", border: "1.5px solid rgba(74,140,255,0.2)", padding: "8px 20px", borderRadius: 8, cursor: "pointer" }}>
+                    <button onClick={() => setSubmitStatus("idle")} style={{ marginTop: 22, fontFamily: "'Sora', sans-serif", fontSize: 12, fontWeight: 600, color: "#EA580C", background: "rgba(249,115,22,0.08)", border: "1.5px solid rgba(249,115,22,0.2)", padding: "8px 20px", borderRadius: 8, cursor: "pointer" }}>
                       Send Another
                     </button>
                   </div>
@@ -588,16 +591,6 @@ export default function ContactPage() {
                           <label style={labelStyle}>Job Title</label>
                           <input type="text" name="jobTitle" value={formData.jobTitle} onChange={handleChange} placeholder="Marketing Head" />
                         </div>
-                      </div>
-
-                      <div className="input-wrap">
-                        <label style={labelStyle}>Country</label>
-                        <select name="country" value={formData.country} onChange={handleChange}>
-                          <option value="">Select your country...</option>
-                          {["India", "United States", "United Kingdom", "Canada", "Australia", "Germany", "UAE", "South Africa", "Other"].map(c => (
-                            <option key={c} value={c}>{c}</option>
-                          ))}
-                        </select>
                       </div>
 
                       <div className="input-wrap">
