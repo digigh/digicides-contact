@@ -299,24 +299,160 @@ export default function ContactPage() {
           <FloatingOrb size={200} left="82%" top="8%" delay={1} color="radial-gradient(circle, rgba(127,181,255,0.16) 0%, transparent 70%)" />
         </div>
 
+        {/* ── Agri Art: Bottom-right wheat field panorama ── */}
+        <div style={{ position: "fixed", bottom: 0, right: "-20px", pointerEvents: "none", zIndex: 0 }}>
+          <svg width="600" height="380" viewBox="0 0 600 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="stalkGrad1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#5BAE48" stopOpacity="0.22"/>
+                <stop offset="100%" stopColor="#2E7D1F" stopOpacity="0.32"/>
+              </linearGradient>
+              <linearGradient id="stalkGrad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7BC96A" stopOpacity="0.18"/>
+                <stop offset="100%" stopColor="#3A8A28" stopOpacity="0.26"/>
+              </linearGradient>
+              <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#4A9E36" stopOpacity="0.12"/>
+                <stop offset="100%" stopColor="#2E7D1F" stopOpacity="0.22"/>
+              </linearGradient>
+            </defs>
+
+            {/* Ground band */}
+            <ellipse cx="300" cy="375" rx="340" ry="28" fill="url(#groundGrad)"/>
+
+            {/* Stalk 1 — tallest center */}
+            <line x1="295" y1="375" x2="295" y2="110" stroke="url(#stalkGrad1)" strokeWidth="3.5"/>
+            <path d="M295 120 C295 120 295 98 295 88" stroke="#4A9E36" strokeWidth="2.5" strokeOpacity="0.25" strokeLinecap="round"/>
+            <path d="M295 88 C286 72 270 68 265 55 C278 62 290 70 295 88Z" fill="#5BAE48" fillOpacity="0.28"/>
+            <path d="M295 88 C304 72 320 68 325 55 C312 62 300 70 295 88Z" fill="#5BAE48" fillOpacity="0.28"/>
+            <path d="M295 108 C280 96 264 94 258 84 C272 90 285 98 295 108Z" fill="#4A9E36" fillOpacity="0.22"/>
+            <path d="M295 108 C310 96 326 94 332 84 C318 90 305 98 295 108Z" fill="#4A9E36" fillOpacity="0.22"/>
+            <path d="M295 130 C282 120 268 118 263 110 C276 115 287 122 295 130Z" fill="#3A8A28" fillOpacity="0.18"/>
+            <path d="M295 130 C308 120 322 118 327 110 C314 115 303 122 295 130Z" fill="#3A8A28" fillOpacity="0.18"/>
+            <ellipse cx="295" cy="88" rx="9" ry="22" fill="#5BAE48" fillOpacity="0.3"/>
+
+            {/* Stalk 2 — left */}
+            <line x1="180" y1="375" x2="184" y2="148" stroke="url(#stalkGrad2)" strokeWidth="3"/>
+            <path d="M183 158 C174 143 158 140 153 128 C167 135 179 143 183 158Z" fill="#6BBF59" fillOpacity="0.24"/>
+            <path d="M183 158 C192 143 208 140 213 128 C199 135 187 143 183 158Z" fill="#6BBF59" fillOpacity="0.24"/>
+            <path d="M183 178 C175 165 162 163 158 153 C170 158 180 165 183 178Z" fill="#4A9E36" fillOpacity="0.2"/>
+            <path d="M183 178 C191 165 204 163 208 153 C196 158 186 165 183 178Z" fill="#4A9E36" fillOpacity="0.2"/>
+            <path d="M183 200 C176 189 165 187 161 178 C172 183 181 189 183 200Z" fill="#3A8A28" fillOpacity="0.16"/>
+            <path d="M183 200 C190 189 201 187 205 178 C194 183 185 189 183 200Z" fill="#3A8A28" fillOpacity="0.16"/>
+            <ellipse cx="183" cy="150" rx="7" ry="18" fill="#6BBF59" fillOpacity="0.26"/>
+
+            {/* Stalk 3 — right */}
+            <line x1="415" y1="375" x2="410" y2="130" stroke="url(#stalkGrad1)" strokeWidth="3.2"/>
+            <path d="M411 140 C402 125 386 122 381 110 C395 117 408 125 411 140Z" fill="#5BAE48" fillOpacity="0.26"/>
+            <path d="M411 140 C420 125 436 122 441 110 C427 117 414 125 411 140Z" fill="#5BAE48" fillOpacity="0.26"/>
+            <path d="M411 162 C403 149 390 147 386 137 C398 142 408 149 411 162Z" fill="#4A9E36" fillOpacity="0.2"/>
+            <path d="M411 162 C419 149 432 147 436 137 C424 142 414 149 411 162Z" fill="#4A9E36" fillOpacity="0.2"/>
+            <path d="M411 184 C404 173 393 171 389 162 C400 167 409 173 411 184Z" fill="#3A8A28" fillOpacity="0.16"/>
+            <path d="M411 184 C418 173 429 171 433 162 C422 167 413 173 411 184Z" fill="#3A8A28" fillOpacity="0.16"/>
+            <ellipse cx="411" cy="132" rx="8" ry="20" fill="#5BAE48" fillOpacity="0.28"/>
+
+            {/* Stalk 4 — far left short */}
+            <line x1="80" y1="375" x2="83" y2="200" stroke="url(#stalkGrad2)" strokeWidth="2.5"/>
+            <path d="M82 210 C75 198 63 196 59 187 C70 192 79 198 82 210Z" fill="#6BBF59" fillOpacity="0.2"/>
+            <path d="M82 210 C89 198 101 196 105 187 C94 192 85 198 82 210Z" fill="#6BBF59" fillOpacity="0.2"/>
+            <path d="M82 228 C76 218 66 216 63 208 C73 212 81 218 82 228Z" fill="#4A9E36" fillOpacity="0.16"/>
+            <path d="M82 228 C88 218 98 216 101 208 C91 212 83 218 82 228Z" fill="#4A9E36" fillOpacity="0.16"/>
+            <ellipse cx="82" cy="202" rx="6" ry="15" fill="#6BBF59" fillOpacity="0.22"/>
+
+            {/* Stalk 5 — far right short */}
+            <line x1="520" y1="375" x2="516" y2="190" stroke="url(#stalkGrad2)" strokeWidth="2.5"/>
+            <path d="M517 200 C510 188 498 186 494 177 C505 182 514 188 517 200Z" fill="#5BAE48" fillOpacity="0.2"/>
+            <path d="M517 200 C524 188 536 186 540 177 C529 182 520 188 517 200Z" fill="#5BAE48" fillOpacity="0.2"/>
+            <path d="M517 218 C511 208 501 206 498 198 C508 202 515 208 517 218Z" fill="#4A9E36" fillOpacity="0.16"/>
+            <path d="M517 218 C523 208 533 206 536 198 C526 202 519 208 517 218Z" fill="#4A9E36" fillOpacity="0.16"/>
+            <ellipse cx="517" cy="192" rx="6" ry="15" fill="#5BAE48" fillOpacity="0.22"/>
+
+            {/* Horizontal grass blades at base */}
+            <path d="M60 370 C80 355 110 360 130 368" stroke="#6BBF59" strokeWidth="1.8" strokeOpacity="0.2" fill="none" strokeLinecap="round"/>
+            <path d="M230 368 C255 352 280 357 310 365" stroke="#6BBF59" strokeWidth="1.8" strokeOpacity="0.18" fill="none" strokeLinecap="round"/>
+            <path d="M370 369 C395 354 420 359 448 367" stroke="#6BBF59" strokeWidth="1.8" strokeOpacity="0.2" fill="none" strokeLinecap="round"/>
+            <path d="M480 370 C500 356 525 362 548 369" stroke="#6BBF59" strokeWidth="1.6" strokeOpacity="0.16" fill="none" strokeLinecap="round"/>
+          </svg>
+        </div>
+
+        {/* ── Agri Art: Top-left elegant leaf sprig ── */}
+        <div style={{ position: "fixed", top: 72, left: 0, pointerEvents: "none", zIndex: 0 }}>
+          <svg width="280" height="300" viewBox="0 0 280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="leafGrad1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#A8E063" stopOpacity="0.22"/>
+                <stop offset="100%" stopColor="#4A9E36" stopOpacity="0.14"/>
+              </linearGradient>
+              <linearGradient id="leafGrad2" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7BC96A" stopOpacity="0.18"/>
+                <stop offset="100%" stopColor="#3A8A28" stopOpacity="0.12"/>
+              </linearGradient>
+            </defs>
+
+            {/* Main stem curving from corner */}
+            <path d="M0 280 C30 240 45 190 60 140 C72 100 80 60 90 30" stroke="#4A9E36" strokeWidth="2.5" strokeOpacity="0.2" fill="none" strokeLinecap="round"/>
+
+            {/* Leaf pair 1 — large, lower */}
+            <path d="M38 210 C20 185 5 160 15 135 C35 150 50 175 38 210Z" fill="url(#leafGrad1)"/>
+            <path d="M38 210 C58 188 75 162 62 138 C44 152 35 178 38 210Z" fill="url(#leafGrad2)"/>
+            <line x1="38" y1="210" x2="38" y2="150" stroke="#4A9E36" strokeWidth="1" strokeOpacity="0.15" strokeLinecap="round"/>
+
+            {/* Leaf pair 2 — mid */}
+            <path d="M55 155 C34 133 20 108 30 85 C50 100 62 126 55 155Z" fill="url(#leafGrad1)"/>
+            <path d="M55 155 C76 136 88 110 76 88 C58 102 50 128 55 155Z" fill="url(#leafGrad2)"/>
+            <line x1="55" y1="155" x2="53" y2="100" stroke="#4A9E36" strokeWidth="1" strokeOpacity="0.14" strokeLinecap="round"/>
+
+            {/* Leaf pair 3 — upper small */}
+            <path d="M72 95 C56 76 48 54 58 36 C74 50 80 72 72 95Z" fill="url(#leafGrad1)"/>
+            <path d="M72 95 C90 78 96 56 84 38 C70 52 66 74 72 95Z" fill="url(#leafGrad2)"/>
+            <line x1="72" y1="95" x2="71" y2="52" stroke="#4A9E36" strokeWidth="1" strokeOpacity="0.12" strokeLinecap="round"/>
+
+            {/* Small bud tip */}
+            <ellipse cx="90" cy="30" rx="6" ry="12" fill="#6BBF59" fillOpacity="0.2" transform="rotate(-15, 90, 30)"/>
+          </svg>
+        </div>
+
         {/* NAVBAR */}
-        <nav style={{ position: "sticky", top: 0, zIndex: 100, height: 72, backdropFilter: "blur(12px)", background: "rgba(255,255,255,0.6)", borderBottom: "1px solid rgba(74,140,255,0.1)" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", height: "100%", display: "flex", alignItems: "center" }}>
-            <img
-              src="https://i.ibb.co/Tqn0Y1wk/Logo.png"
-              alt="Digicides"
-              onError={e => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }}
-              style={{ height: 44, borderRadius: 12, objectFit: "contain" }}
-            />
-            {/* Fallback text logo shown if image fails to load */}
-            <div style={{ display: "none", alignItems: "center", gap: 10 }}>
-              <div style={{ width: 38, height: 38, borderRadius: 12, background: "linear-gradient(135deg, #4A8CFF, #2E6BFF)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 14px rgba(46,107,255,0.28)", overflow: "hidden" }}>
-                <div style={{ width: 24, height: 24 }}><LeafIcon /></div>
+        <nav style={{ position: "sticky", top: 0, zIndex: 100, height: 76, backdropFilter: "blur(12px)", background: "rgba(255,255,255,0.65)", borderBottom: "1px solid rgba(74,140,255,0.1)" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+
+            {/* Logo — clickable, redirects to digicides.com */}
+            <a href="https://digicides.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", borderRadius: 14, padding: "4px 6px", transition: "all 0.2s", outline: "none" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(74,140,255,0.06)"; e.currentTarget.style.transform = "scale(1.02)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.transform = "scale(1)"; }}
+            >
+              <img
+                src="https://i.ibb.co/Tqn0Y1wk/Logo.png"
+                alt="Digicides"
+                onError={e => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }}
+                style={{ height: 52, borderRadius: 12, objectFit: "contain" }}
+              />
+              {/* Fallback */}
+              <div style={{ display: "none", alignItems: "center", gap: 10 }}>
+                <div style={{ width: 42, height: 42, borderRadius: 12, background: "linear-gradient(135deg, #4A8CFF, #2E6BFF)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 14px rgba(46,107,255,0.28)" }}>
+                  <div style={{ width: 26, height: 26 }}><LeafIcon /></div>
+                </div>
+                <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 20, color: "#1e293b", letterSpacing: "-0.3px" }}>
+                  digi<span style={{ color: "#2E6BFF" }}>cides</span>
+                </span>
               </div>
-              <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 18, color: "#1e293b", letterSpacing: "-0.3px" }}>
-                digi<span style={{ color: "#2E6BFF" }}>cides</span>
-              </span>
-            </div>
+            </a>
+
+            {/* Visit Website CTA */}
+            <a
+              href="https://digicides.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "'Sora', sans-serif", fontSize: 13, fontWeight: 600, color: "#2E6BFF", background: "rgba(46,107,255,0.07)", border: "1.5px solid rgba(46,107,255,0.18)", padding: "9px 20px", borderRadius: 100, textDecoration: "none", letterSpacing: "0.2px", transition: "all 0.22s", whiteSpace: "nowrap" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(46,107,255,0.13)"; e.currentTarget.style.borderColor = "rgba(46,107,255,0.35)"; e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 6px 18px rgba(46,107,255,0.15)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "rgba(46,107,255,0.07)"; e.currentTarget.style.borderColor = "rgba(46,107,255,0.18)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+            >
+              Visit Website
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
           </div>
         </nav>
 
