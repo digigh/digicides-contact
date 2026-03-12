@@ -67,7 +67,7 @@ export default function ContactPage() {
     if (errors[name]) setErrors(p => ({ ...p, [name]: undefined }));
   };
 
-  const WEBHOOK_URL = "https://your-webhook-url.com/webhook"; // 🔁 Replace with your actual webhook URL
+  const WEBHOOK_URL = "https://aiautomation.digicides.com/webhook-test/833ea212-0729-4ea6-a50e-cbb08c36a0e1"; // 🔁 Replace with your actual webhook URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -643,3 +643,4 @@ export default function ContactPage() {
     </>
   );
 }
+
